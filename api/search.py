@@ -104,10 +104,10 @@ class handler(BaseHTTPRequestHandler):
         except Exception as e:
             # 응답 바디는 로그에 안 남김. 최소 진단 정보만.
             print(
-                f"[search] upstream_error source={source} kw_len={len(keyword)} err={type(e).__name__}: {e}",
+                f"[search] upstream_error source={source} kw_len={len(keyword)} err={type(e).__name__}",
                 file=sys.stderr,
             )
-            return self._send(502, {"error": "upstream_error", "debug_type": type(e).__name__, "debug_msg": str(e)[:300]}, origin)
+            return self._send(502, {"error": "upstream_error"}, origin)
 
         return self._send(
             200,
